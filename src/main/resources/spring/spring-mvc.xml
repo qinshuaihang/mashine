@@ -8,8 +8,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<!-- 启动自动扫描 -->
-	<context:component-scan
-		base-package="com.user" />
+	<context:component-scan base-package="com.user" />
+	<context:component-scan base-package="com.index.controller"></context:component-scan>
 
 	<!-- 注册MVC注解驱动 -->
 	<mvc:annotation-driven />
@@ -19,6 +19,7 @@
 	<mvc:resources location="/static/" mapping="/static/**"></mvc:resources>
 	<mvc:resources location="/temp/" mapping="/temp/**"></mvc:resources>
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
+	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
 	<!-- 配置视图解析器，可以显式设置，也可以不设置，不设置会依据SpringMVC的默认设置 -->
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

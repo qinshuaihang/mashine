@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>专家系统主页</title>
+<title>机组管理 - 机组列表 - 故障诊断系统</title>
 </head>
 <body>
 <!--_header 作为公共模版分离出去-->
@@ -132,10 +132,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <section class="Hui-article-box">
 	<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> 
 		<span class="c-999 en">&gt;</span>
-		<span class="c-666">主页</span> 
+		<span class="c-666">个人中心</span> 
 		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 	<div class="Hui-article">
-</div>
+    <table class="table table-border table-bordered table-bg mt-20">
+        <thead>
+            <tr>
+				<th scope="col" class="text-c">个人信息</th>
+				<th>
+					<span class="l"> <a href="javascript:;" class="btn btn-danger radius"><i class="Hui-iconfont"></i>修改信息</a></span>
+				</th>
+            </tr>
+        </thead>
+        <tbody class="text-c">
+            <tr>
+                <th width="20%">账号</th>
+                <td>${user.username }</td>
+            </tr>
+            <tr>
+                <td>姓名</th>
+                <td>test</td>
+            </tr>
+            <tr>
+                <td>性别</th>
+                <td>男</td>
+            </tr>
+            <tr>
+                <td>手机号</th>
+                <td>test</td>
+            </tr>
+            <tr>
+                <td>邮箱</th>
+                <td>test@mail.com</td>
+            </tr>
+            <tr>
+                <td>密码</td>
+                <td><span class="l"> <a href="javascript:;" class="btn btn-danger radius"><i class="Hui-iconfont"></i>修改密码</a></span></td>
+            </tr>            
+        </tbody>
+    </table>
+    </div>
 </section>
 
 <!--_footer 作为公共模版分离出去-->
@@ -199,17 +235,5 @@ function member_add(title,url,w,h){
 }
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
-
-<!--此乃百度统计代码，请自行删除-->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!--/此乃百度统计代码，请自行删除-->
 </body>
 </html>

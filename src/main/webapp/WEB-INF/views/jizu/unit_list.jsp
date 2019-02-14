@@ -31,7 +31,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <![endif]-->
 <!--/meta 作为公共模版分离出去-->
 
-<title>专家系统主页</title>
+<title>机组管理 - 机组列表 - 故障诊断系统</title>
 </head>
 <body>
 <!--_header 作为公共模版分离出去-->
@@ -130,26 +130,136 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--/_menu 作为公共模版分离出去-->
 
 <section class="Hui-article-box">
-	<nav class="breadcrumb"><i class="Hui-iconfont"></i> <a href="/" class="maincolor">首页</a> 
-		<span class="c-999 en">&gt;</span>
-		<span class="c-666">主页</span> 
-		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页
+		<span class="c-gray en">&gt;</span>
+		机组管理
+		<span class="c-gray en">&gt;</span>
+		机组列表
+		<a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a>
+	</nav>
 	<div class="Hui-article">
-</div>
+		<article class="cl pd-20">
+			<div class="text-r">
+					<button name="" id="" class="btn btn-success" type="button"><i class="Hui-iconfont">&#xe665;</i> 导入</button>
+					<button name="" id="" class="btn btn-success" type="button"><i class="Hui-iconfont">&#xe665;</i> 导出</button>
+			</div>
+			<div class="cl pd-5 bg-1 bk-gray mt-20">
+				<span class="l">
+				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
+				<a class="btn btn-primary radius" data-title="添加机组" _href="unit_add.html" onclick="unit_add('添加机组','unit_add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加机组</a>
+				<a class="btn btn-primary radius" data-title="复制添加机组" _href="unit_copyadd.html" onclick="unit_copyadd('复制添加机组','unit_copyadd.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 复制添加机组</a>
+				</span>
+				<span class="r">共有数据：<strong>54</strong> 条</span>
+			</div>
+			<div class="mt-20">
+				<table class="table table-border table-bordered table-bg table-hover table-sort">
+					<thead>
+						<tr class="text-c">
+							<th widh="25"><input type="checkbox" name="" value=""/></th>
+							<th width="100">ID</th>
+							<th width="100">机组编号</th>
+							<th width="150">机组名称</th>
+							<th width="600">机组信息</th>
+							<th width="120">操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr class="text-c">
+							<td><input type="checkbox" value="" name=""/></td>
+							<td>01</td>
+							<td>1001</td>
+							<td>一号机组</td>
+							<td>这是一号机组</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							</td>
+						</tr>
+						<tr class="text-c">
+							<td><input type="checkbox" value="" name=""/></td>
+							<td>02</td>
+							<td>1002</td>
+							<td>二号机组</td>
+							<td>这是二号机组</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							</td>
+						</tr>
+						<tr class="text-c">
+							<td><input type="checkbox" value="" name=""/></td>
+							<td>03</td>
+							<td>1003</td>
+							<td>三号机组</td>
+							<td>这是三号机组</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							</td>
+						</tr>
+						<tr class="text-c">
+							<td><input type="checkbox" value="" name=""/></td>
+							<td>04</td>
+							<td>1004</td>
+							<td>四号机组</td>
+							<td>这是四号机组</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							</td>
+						</tr>
+						<tr class="text-c">
+							<td><input type="checkbox" value="" name=""/></td>
+							<td>05</td>
+							<td>1005</td>
+							<td>五号机组</td>
+							<td>这是五号机组</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							</td>
+						</tr>
+						<tr class="text-c">
+							<td><input type="checkbox" value="" name=""/></td>
+							<td>06</td>
+							<td>1006</td>
+							<td>六号机组</td>
+							<td>这是六号机组</td>
+							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
+								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</article>
+	</div>
 </section>
 
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script> 
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
-<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script> 
-<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script> 
+<script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
 <!--/_footer /作为公共模版分离出去-->
 
 <!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
 <script type="text/javascript">
-/* 机组添加 */
-function unit_add(title,url){
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+		//{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+		{"orderable":false,"aTargets":[0,5]}// 不参与排序的列
+	]
+});
+
+/*机组-添加*/
+function unit_add(title,url,w,h){
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -157,8 +267,8 @@ function unit_add(title,url){
 	});
 	layer.full(index);
 }
-/* 测点添加 */
-function meapoint_add(title,url){
+/*机组-复制添加*/
+function unit_copyadd(title,url,w,h){
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -166,8 +276,8 @@ function meapoint_add(title,url){
 	});
 	layer.full(index);
 }
-/* 故障添加 */
-function problem_add(title,url){
+/*机组-编辑*/
+function unit_edit(title,url,id,w,h){
 	var index = layer.open({
 		type: 2,
 		title: title,
@@ -175,41 +285,24 @@ function problem_add(title,url){
 	});
 	layer.full(index);
 }
-/* 规则添加 */
-function rules_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
+/*机组-删除*/
+function unit_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type: 'POST',
+			url: '',
+			dataType: 'json',
+			success: function(data){
+				$(obj).parents("tr").remove();
+				layer.msg('已删除!',{icon:1,time:1000});
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});		
 	});
-	layer.full(index);
-}
-/* 特征添加 */
-function feature_add(title,url){
-	var index = layer.open({
-		type: 2,
-		title: title,
-		content: url
-	});
-	layer.full(index);
-}
-/*用户-添加*/
-function member_add(title,url,w,h){
-	layer_show(title,url,w,h);
 }
 </script>
 <!--/请在上方写此页面业务相关的脚本-->
-
-<!--此乃百度统计代码，请自行删除-->
-<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "https://hm.baidu.com/hm.js?080836300300be57b7f34f4b3e97d911";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
-<!--/此乃百度统计代码，请自行删除-->
 </body>
 </html>
