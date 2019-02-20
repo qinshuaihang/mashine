@@ -1,4 +1,4 @@
-package com.user.entity;
+package com.xt.entity;
 /**
  * @Author 王海啸
  * @Description: TODO 用户实体类

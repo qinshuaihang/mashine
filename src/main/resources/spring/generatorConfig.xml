@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	
+  <!-- 导入数据库连接属性 -->
+  <properties resource="spring/db.properties"/>
+
+  <context id="context1">
+  	
+  	<!-- 去除自动生成的注释 -->
+  	<commentGenerator>
+  		<property name="suppressDate" value="true"/>
+  		<property name="suppressAllComments" value="true"/>
+  	</commentGenerator>
+  	
+  	<!-- 数据库连接属性 -->
+    <jdbcConnection connectionURL="${jdbc.url}" driverClass="${jdbc.driver}" password="${jdbc.password}" userId="${jdbc.username}" />
+    
+    <!-- 实体类 -->
+    <!-- targetPackage 和 targetProject：生成文件的包和对应项目 -->
+    <javaModelGenerator targetPackage="com.xt.entity" targetProject="machine" />
+    <!-- xml实现 -->
+    <!-- targetPackage 和 targetProject：生成文件的包和对应项目 -->
+    <sqlMapGenerator targetPackage="com.xt.mapper" targetProject="machine" />
+    <!-- Dao接口类 -->
+    <!-- targetPackage 和 targetProject：生成文件的包和对应项目 -->
+    <javaClientGenerator targetPackage="com.xt.mapper" targetProject="machine" type="XMLMAPPER" />
+    <!-- 数据库中的表读取 -->
+    <table tableName="jizu" domainObjectName="Jizu"
+    	   enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
+    
+    <table tableName="jzpeizhi" domainObjectName="Jzpeizhi"
+    	   enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
+    
+    <table tableName="mea_point" domainObjectName="MeaPoint"
+    	   enableCountByExample="false" enableUpdateByExample="false"
+           enableDeleteByExample="false" enableSelectByExample="false"
+           selectByExampleQueryId="false">
+    </table>
+  </context>
+</generatorConfiguration>

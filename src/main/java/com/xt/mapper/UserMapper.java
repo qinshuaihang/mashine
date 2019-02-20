@@ -1,10 +1,10 @@
-package com.user.mapper;
+package com.xt.mapper;
 
 import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
-import com.user.entity.User;
+import com.xt.entity.User;
 
 @Repository(value="userMapper")
 public interface UserMapper {

@@ -1,11 +1,11 @@
-package com.user.service;
+package com.xt.service;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.ui.Model;
 
-import com.user.entity.User;
+import com.xt.entity.User;
 
 public interface UserService {
 

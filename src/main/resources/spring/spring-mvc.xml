@@ -8,8 +8,8 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 	<!-- 启动自动扫描 -->
-	<context:component-scan base-package="com.user" />
-	<context:component-scan base-package="com.index.controller"></context:component-scan>
+	<context:component-scan base-package="com.xt" />
+	
 
 	<!-- 注册MVC注解驱动 -->
 	<mvc:annotation-driven />

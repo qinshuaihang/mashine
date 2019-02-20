@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -89,9 +90,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dt><i class="Hui-iconfont">&#xe616;</i> 基础信息管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="unitMan" title="机组管理">机组管理</a></li>
-					<li><a href="meapointMan" title="测点管理">测点管理</a></li>
-					
+					<li><a href="jizu/unitList" title="机组管理">机组管理</a></li>
+					<li><a href="meaPoint/meaList" title="测点管理">测点管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -149,8 +149,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<a class="btn btn-primary radius" data-title="添加机组" _href="unit_add.html" onclick="unit_add('添加机组','unit_add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加机组</a>
 				<a class="btn btn-primary radius" data-title="复制添加机组" _href="unit_copyadd.html" onclick="unit_copyadd('复制添加机组','unit_copyadd.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 复制添加机组</a>
 				</span>
-				<span class="r">共有数据：<strong>54</strong> 条</span>
+				<span class="r">共有数据：<strong>${pageInfo.total }</strong> 条</span>
 			</div>
+			<!-- 列表信息 -->
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
@@ -164,74 +165,69 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${list }" var="jizu">
 						<tr class="text-c">
 							<td><input type="checkbox" value="" name=""/></td>
-							<td>01</td>
-							<td>1001</td>
-							<td>一号机组</td>
-							<td>这是一号机组</td>
+							<td>${jizu.id }</td>
+							<td>${jizu.jizuNum }</td>
+							<td>${jizu.jizuName }</td>
+							<td>${jizu.jizuDes }</td>
 							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-查看"><i class="Hui-iconfont">&#xe665;</i></a>
 								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+								<a style="text-decoration:none" class="ml-5" href="jizu/deleteUnit?id=${jizu.id }" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 							</td>
 						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>02</td>
-							<td>1002</td>
-							<td>二号机组</td>
-							<td>这是二号机组</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>03</td>
-							<td>1003</td>
-							<td>三号机组</td>
-							<td>这是三号机组</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>04</td>
-							<td>1004</td>
-							<td>四号机组</td>
-							<td>这是四号机组</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>05</td>
-							<td>1005</td>
-							<td>五号机组</td>
-							<td>这是五号机组</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>06</td>
-							<td>1006</td>
-							<td>六号机组</td>
-							<td>这是六号机组</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="unit_edit('机组编辑','unit_add.html','10001')" href="javascript:;" title="机组-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="unit_del(this,'10001')" href="javascript:;" title="机组-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
+					</c:forEach>
 					</tbody>
 				</table>
+			</div>
+			<!-- 分页信息 -->
+			<div>
+				<div>
+				当前第${pageInfo.pageNum }页，总共${pageInfo.pages }页
+				</div>
+				<!-- 点击分页 -->
+				<div>
+					<nav aria-label="Page navigation">
+                	<ul class="pagination">
+                    <li><a href="${pageContext.request.contextPath}/jizu/unitList?pageNum=1">首页</a></li>
+                    <!--上一页-->
+                    <li>
+                        <c:if test="${pageInfo.hasPreviousPage}">
+                            <a href="${pageContext.request.contextPath}/jizu/unitList?pageNum=${pageInfo.pageNum-1}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </c:if>
+                    </li>
+                    <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+                    <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                        <c:if test="${page_num == pageInfo.pageNum}">
+                            <li class="active"><a href="#">${page_num}</a></li>
+                        </c:if>
+                        <c:if test="${page_num != pageInfo.pageNum}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/jizu/unitList?pageNum=${page_num}">${page_num}</a>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+
+                    <!--下一页-->
+                    <li>
+                        <c:if test="${pageInfo.hasNextPage}">
+                            <a href="${pageContext.request.contextPath}/jizu/unitList?pageNum=${pageInfo.pageNum+1}"
+                               aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </c:if>
+                    </li>
+
+                    <li><a href="${pageContext.request.contextPath}/jizu/unitList?pageNum=${pageInfo.pages}">尾页</a></li>
+                	</ul>
+            		</nav>
+        		</div>
+				</div>
 			</div>
 		</article>
 	</div>
@@ -247,7 +243,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<!-- <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> -->
 <script type="text/javascript">
 $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
@@ -290,7 +286,7 @@ function unit_del(obj,id){
 	layer.confirm('确认要删除吗？',function(index){
 		$.ajax({
 			type: 'POST',
-			url: '',
+			url: 'jizu/deleteUnit',
 			dataType: 'json',
 			success: function(data){
 				$(obj).parents("tr").remove();

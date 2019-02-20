@@ -89,9 +89,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dt><i class="Hui-iconfont">&#xe616;</i> 基础信息管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="unitMan" title="机组管理">机组管理</a></li>
-					<li><a href="meapointMan" title="测点管理">测点管理</a></li>
-					
+					<li><a href="jizu/unitList" title="机组管理">机组管理</a></li>
+					<li><a href="meaPoint/meaList" title="测点管理">测点管理</a></li>
 				</ul>
 			</dd>
 		</dl>

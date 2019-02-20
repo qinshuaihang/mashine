@@ -1,4 +1,4 @@
-package com.user.serviceImpl;
+package com.xt.serviceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.base.util.SessionUtil;
-import com.user.entity.User;
-import com.user.mapper.UserMapper;
-import com.user.service.UserService;
+import com.xt.entity.User;
+import com.xt.mapper.UserMapper;
+import com.xt.service.UserService;
 
 @Service(value="userService")
 @Transactional

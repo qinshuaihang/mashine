@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -9,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <html>
 <head>
 <base href="<%=basePath%>">
-<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="multipart/form-data; charset=utf-8">
 <meta name="renderer" content="webkit|ie-comp|ie-stand">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
@@ -25,6 +26,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/lib/Hui-iconfont/1.0.8/iconfont.css" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/h-ui.admin/skin/default/skin.css" id="skin" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/h-ui.admin/css/style.css" />
+<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">
+//点击上传
+$(document).ready(function(){
+	$('#file_copy').click(function(){
+		$('#file_excel').click();
+	})
+	 $("#file_excel").bind("change",function(){
+		 $("#filename").attr("value",$("#file_excel").val());
+	 });	
+	//点击提交
+	$('#download').click(function(){
+		
+		$("#form_excel").submit();
+	})
+});
+</script>
+
 <!--[if IE 6]>
 <script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
 <script>DD_belatedPNG.fix('*');</script>
@@ -89,9 +108,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<dt><i class="Hui-iconfont">&#xe616;</i> 基础信息管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 			<dd>
 				<ul>
-					<li><a href="unitMan" title="机组管理">机组管理</a></li>
-					<li><a href="meapointMan" title="测点管理">测点管理</a></li>
-					
+					<li><a href="jizu/unitList" title="机组管理">机组管理</a></li>
+					<li><a href="meaPoint/meaList" title="测点管理">测点管理</a></li>
 				</ul>
 			</dd>
 		</dl>
@@ -153,21 +171,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 测点名称：
                 <input type="text" name="" id="" placeholder="测点名称" style="width:250px" class="input-text">
 				<button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 查看</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button name="" id="" class="btn btn-success" type="button"><i class="Hui-iconfont">&#xe665;</i> 导入</button>
-                <button name="" id="" class="btn btn-success" type="button"><i class="Hui-iconfont">&#xe665;</i> 导出</button>
             </div>
 			<div class="cl pd-5 bg-1 bk-gray mt-20">
 				<span class="l">
 				<a href="javascript:;" onclick="datadel()" class="btn btn-danger radius"><i class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
 				<a class="btn btn-primary radius" data-title="添加测点" _href="meapoint_add.html" onclick="meapoint_add('添加测点','meapoint_add.html')" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加测点</a>
 				</span>
-				<span class="r">共有数据：<strong>54</strong> 条</span>
+				
+				<button name="file_copy" id="file_copy" class="btn btn-success" type="button"><i class="Hui-iconfont"></i> 选择文件</button>
+				<button name="download" id="download" class="btn btn-success" type="button"><i class="Hui-iconfont"></i> 提交文件</button>
+                <div id="hidden_file_div" style="display: none;">
+                	<form action="meaPoint/readExcel" method="post" enctype="multipart/form-data"  id="form_excel" name="form_excel">
+                		<input type="file" id="file_excel" name="file_excel" />
+    	 				<input type="submit"/>
+                	</form>
+                	<input type="text" name="filename" id="filename" />
+               </div>
+				
+				<span class="r">共有数据：<strong>${pageInfo.total }</strong> 条</span>
 			</div>
 			<div class="mt-20">
 				<table class="table table-border table-bordered table-bg table-hover table-sort">
 					<thead>
 						<tr class="text-c">
-							<th widh="25"><input type="checkbox" name="" value=""/></th>
+							<th width="25"><input type="checkbox" name="" value=""/></th>
 							<th width="100">ID</th>
 							<th width="100">测点编号</th>
 							<th width="150">测点名称</th>
@@ -176,73 +203,66 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</tr>
 					</thead>
 					<tbody>
+					<c:forEach items="${meaList }" var="mea">
 						<tr class="text-c">
 							<td><input type="checkbox" value="" name=""/></td>
-							<td>01</td>
-							<td>1001</td>
-							<td>一号测点</td>
-							<td>这是一号测点</td>
+							<td>${mea.id }</td>
+							<td>${mea.pointNum }</td>
+							<td>${mea.pointName }</td>
+							<td>${mea.pointDes }</td>
 							<td class="f-14 td-manage">
+								<a style="text-decoration:none" class="ml-5" onclick="meapoint_del(this,'10001')" href="javascript:;" title="测点-查看"><i class="Hui-iconfont">&#xe665;</i></a>
 								<a style="text-decoration:none" class="ml-5" onclick="meapoint_edit('测点编辑','meapoint_add.html','10001')" href="javascript:;" title="测点-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_del(this,'10001')" href="javascript:;" title="测点-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+								<a style="text-decoration:none" class="ml-5" href="meaPoint/deletePoint?id=${mea.id }" title="测点-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
 							</td>
 						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>02</td>
-							<td>1002</td>
-							<td>二号测点</td>
-							<td>这是二号测点</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_edit('测点编辑','meapoint_add.html','10001')" href="javascript:;" title="测点-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_del(this,'10001')" href="javascript:;" title="测点-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>03</td>
-							<td>1003</td>
-							<td>三号测点</td>
-							<td>这是三号测点</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_edit('测点编辑','meapoint_add.html','10001')" href="javascript:;" title="测点-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_del(this,'10001')" href="javascript:;" title="测点-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>04</td>
-							<td>1004</td>
-							<td>四号测点</td>
-							<td>这是四号测点</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_edit('测点编辑','meapoint_add.html','10001')" href="javascript:;" title="测点-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_del(this,'10001')" href="javascript:;" title="测点-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>05</td>
-							<td>1005</td>
-							<td>五号测点</td>
-							<td>这是五号测点</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_edit('测点编辑','meapoint_add.html','10001')" href="javascript:;" title="测点-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_del(this,'10001')" href="javascript:;" title="测点-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
-						<tr class="text-c">
-							<td><input type="checkbox" value="" name=""/></td>
-							<td>06</td>
-							<td>1006</td>
-							<td>六号测点</td>
-							<td>这是六号测点</td>
-							<td class="f-14 td-manage">
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_edit('测点编辑','meapoint_add.html','10001')" href="javascript:;" title="测点-编辑"><i class="Hui-iconfont">&#xe6df;</i></a>
-								<a style="text-decoration:none" class="ml-5" onclick="meapoint_del(this,'10001')" href="javascript:;" title="测点-删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
-							</td>
-						</tr>
+					</c:forEach>
 					</tbody>
+					<div>
+				<div>
+				当前第${pageInfo.pageNum }页，总共${pageInfo.pages }页
+				</div>
+				<!-- 点击分页 -->
+				<div>
+					<nav aria-label="Page navigation">
+                	<ul class="pagination">
+                    <li><a href="${pageContext.request.contextPath}/meaPoint/meaList?pageNum=1">首页</a></li>
+                    <!--上一页-->
+                    <li>
+                        <c:if test="${pageInfo.hasPreviousPage}">
+                            <a href="${pageContext.request.contextPath}/meaPoint/meaList?pageNum=${pageInfo.pageNum-1}"
+                               aria-label="Previous">
+                                <span aria-hidden="true">«</span>
+                            </a>
+                        </c:if>
+                    </li>
+                    <!--循环遍历连续显示的页面，若是当前页就高亮显示，并且没有链接-->
+                    <c:forEach items="${pageInfo.navigatepageNums}" var="page_num">
+                        <c:if test="${page_num == pageInfo.pageNum}">
+                            <li class="active"><a href="#">${page_num}</a></li>
+                        </c:if>
+                        <c:if test="${page_num != pageInfo.pageNum}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/meaPoint/meaList?pageNum=${page_num}">${page_num}</a>
+                            </li>
+                        </c:if>
+                    </c:forEach>
+
+                    <!--下一页-->
+                    <li>
+                        <c:if test="${pageInfo.hasNextPage}">
+                            <a href="${pageContext.request.contextPath}/meaPoint/meaList?pageNum=${pageInfo.pageNum+1}"
+                               aria-label="Next">
+                                <span aria-hidden="true">»</span>
+                            </a>
+                        </c:if>
+                    </li>
+
+                    <li><a href="${pageContext.request.contextPath}/meaPoint/meaList?pageNo=${pageInfo.pages}">尾页</a></li>
+                	</ul>
+            		</nav>
+        		</div>
+				</div>
 				</table>
 			</div>
 		</article>
@@ -250,7 +270,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </section>
 
 <!--_footer 作为公共模版分离出去-->
-<script type="text/javascript" src="lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="lib/layer/2.4/layer.js"></script>
 <script type="text/javascript" src="static/h-ui/js/H-ui.js"></script>
 <script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.page.js"></script>
@@ -259,7 +278,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!--请在下方写此页面业务相关的脚本-->
 <script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
 <script type="text/javascript" src="lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script>
+<!-- <script type="text/javascript" src="lib/laypage/1.2/laypage.js"></script> -->
+<!-- <script src="${pageContext.request.contextPath}/static/h-ui.admin/js/layui.js"> -->
+
 <script type="text/javascript">
 $('.table-sort').dataTable({
 	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
@@ -287,23 +308,6 @@ function meapoint_edit(title,url,id,w,h){
 		content: url
 	});
 	layer.full(index);
-}
-/*测点-删除*/
-function meapoint_del(obj,id){
-	layer.confirm('确认要删除吗？',function(index){
-		$.ajax({
-			type: 'POST',
-			url: '',
-			dataType: 'json',
-			success: function(data){
-				$(obj).parents("tr").remove();
-				layer.msg('已删除!',{icon:1,time:1000});
-			},
-			error:function(data) {
-				console.log(data.msg);
-			},
-		});		
-	});
 }
 </script>
 <!--/请在上方写此页面业务相关的脚本-->

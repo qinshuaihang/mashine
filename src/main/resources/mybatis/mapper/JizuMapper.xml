@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.mapper.JizuMapper">
+  <resultMap id="BaseResultMap" type="com.xt.entity.Jizu">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="jizu_num" jdbcType="INTEGER" property="jizuNum" />
+    <result column="jizu_name" jdbcType="VARCHAR" property="jizuName" />
+    <result column="jizu_des" jdbcType="VARCHAR" property="jizuDes" />
+    <association property="jzpeizhi" column="jizuID" javaType="com.xt.entity.Jzpeizhi"
+    select="com.xt.mapper.JzpeizhiMapper.selectByPrimaryKey">
+    </association>
+  </resultMap>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from jizu
+  </select>
+  <sql id="Base_Column_List">
+    id, jizu_num, jizu_name, jizu_des
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jizu
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from jizu
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xt.entity.Jizu">
+    insert into jizu (id, jizu_num, jizu_name, 
+      jizu_des)
+    values (#{id,jdbcType=INTEGER}, #{jizuNum,jdbcType=INTEGER}, #{jizuName,jdbcType=VARCHAR}, 
+      #{jizuDes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.entity.Jizu">
+    insert into jizu
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="jizuNum != null">
+        jizu_num,
+      </if>
+      <if test="jizuName != null">
+        jizu_name,
+      </if>
+      <if test="jizuDes != null">
+        jizu_des,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="jizuNum != null">
+        #{jizuNum,jdbcType=INTEGER},
+      </if>
+      <if test="jizuName != null">
+        #{jizuName,jdbcType=VARCHAR},
+      </if>
+      <if test="jizuDes != null">
+        #{jizuDes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.entity.Jizu">
+    update jizu
+    <set>
+      <if test="jizuNum != null">
+        jizu_num = #{jizuNum,jdbcType=INTEGER},
+      </if>
+      <if test="jizuName != null">
+        jizu_name = #{jizuName,jdbcType=VARCHAR},
+      </if>
+      <if test="jizuDes != null">
+        jizu_des = #{jizuDes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.entity.Jizu">
+    update jizu
+    set jizu_num = #{jizuNum,jdbcType=INTEGER},
+      jizu_name = #{jizuName,jdbcType=VARCHAR},
+      jizu_des = #{jizuDes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

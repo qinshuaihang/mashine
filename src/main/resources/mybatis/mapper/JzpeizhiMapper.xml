@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.mapper.JzpeizhiMapper">
+  <resultMap id="BaseResultMap" type="com.xt.entity.Jzpeizhi">
+    <id column="peizhiID" jdbcType="INTEGER" property="peizhiid" />
+    <result column="jizuID" jdbcType="INTEGER" property="jizuid" />
+    <result column="ZhenHZ" jdbcType="INTEGER" property="zhenhz" />
+    <result column="JianHZ" jdbcType="INTEGER" property="jianhz" />
+    <result column="JianCF" jdbcType="INTEGER" property="jiancf" />
+    <result column="rpmlin1" jdbcType="INTEGER" property="rpmlin1" />
+    <result column="rpmlin2" jdbcType="INTEGER" property="rpmlin2" />
+    <result column="rotorgo" jdbcType="INTEGER" property="rotorgo" />
+    <result column="bearnum" jdbcType="INTEGER" property="bearnum" />
+    <result column="tui" jdbcType="VARCHAR" property="tui" />
+    <result column="weiyi" jdbcType="VARCHAR" property="weiyi" />
+    <result column="yacha" jdbcType="VARCHAR" property="yacha" />
+    <result column="MW" jdbcType="INTEGER" property="mw" />
+    <result column="Wtempstop" jdbcType="INTEGER" property="wtempstop" />
+    <result column="edHPpressout" jdbcType="INTEGER" property="edhppressout" />
+    <result column="numvalve" jdbcType="INTEGER" property="numvalve" />
+    <result column="numhpvalve" jdbcType="INTEGER" property="numhpvalve" />
+    <result column="waterpowermax" jdbcType="INTEGER" property="waterpowermax" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    peizhiID, jizuID, ZhenHZ, JianHZ, JianCF, rpmlin1, rpmlin2, rotorgo, bearnum, tui, 
+    weiyi, yacha, MW, Wtempstop, edHPpressout, numvalve, numhpvalve, waterpowermax
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from jzpeizhi
+    where peizhiID = #{peizhiid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from jzpeizhi
+    where peizhiID = #{peizhiid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xt.entity.Jzpeizhi">
+    insert into jzpeizhi (peizhiID, jizuID, ZhenHZ, 
+      JianHZ, JianCF, rpmlin1, 
+      rpmlin2, rotorgo, bearnum, 
+      tui, weiyi, yacha, 
+      MW, Wtempstop, edHPpressout, 
+      numvalve, numhpvalve, waterpowermax
+      )
+    values (#{peizhiid,jdbcType=INTEGER}, #{jizuid,jdbcType=INTEGER}, #{zhenhz,jdbcType=INTEGER}, 
+      #{jianhz,jdbcType=INTEGER}, #{jiancf,jdbcType=INTEGER}, #{rpmlin1,jdbcType=INTEGER}, 
+      #{rpmlin2,jdbcType=INTEGER}, #{rotorgo,jdbcType=INTEGER}, #{bearnum,jdbcType=INTEGER}, 
+      #{tui,jdbcType=VARCHAR}, #{weiyi,jdbcType=VARCHAR}, #{yacha,jdbcType=VARCHAR}, 
+      #{mw,jdbcType=INTEGER}, #{wtempstop,jdbcType=INTEGER}, #{edhppressout,jdbcType=INTEGER}, 
+      #{numvalve,jdbcType=INTEGER}, #{numhpvalve,jdbcType=INTEGER}, #{waterpowermax,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.entity.Jzpeizhi">
+    insert into jzpeizhi
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="peizhiid != null">
+        peizhiID,
+      </if>
+      <if test="jizuid != null">
+        jizuID,
+      </if>
+      <if test="zhenhz != null">
+        ZhenHZ,
+      </if>
+      <if test="jianhz != null">
+        JianHZ,
+      </if>
+      <if test="jiancf != null">
+        JianCF,
+      </if>
+      <if test="rpmlin1 != null">
+        rpmlin1,
+      </if>
+      <if test="rpmlin2 != null">
+        rpmlin2,
+      </if>
+      <if test="rotorgo != null">
+        rotorgo,
+      </if>
+      <if test="bearnum != null">
+        bearnum,
+      </if>
+      <if test="tui != null">
+        tui,
+      </if>
+      <if test="weiyi != null">
+        weiyi,
+      </if>
+      <if test="yacha != null">
+        yacha,
+      </if>
+      <if test="mw != null">
+        MW,
+      </if>
+      <if test="wtempstop != null">
+        Wtempstop,
+      </if>
+      <if test="edhppressout != null">
+        edHPpressout,
+      </if>
+      <if test="numvalve != null">
+        numvalve,
+      </if>
+      <if test="numhpvalve != null">
+        numhpvalve,
+      </if>
+      <if test="waterpowermax != null">
+        waterpowermax,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="peizhiid != null">
+        #{peizhiid,jdbcType=INTEGER},
+      </if>
+      <if test="jizuid != null">
+        #{jizuid,jdbcType=INTEGER},
+      </if>
+      <if test="zhenhz != null">
+        #{zhenhz,jdbcType=INTEGER},
+      </if>
+      <if test="jianhz != null">
+        #{jianhz,jdbcType=INTEGER},
+      </if>
+      <if test="jiancf != null">
+        #{jiancf,jdbcType=INTEGER},
+      </if>
+      <if test="rpmlin1 != null">
+        #{rpmlin1,jdbcType=INTEGER},
+      </if>
+      <if test="rpmlin2 != null">
+        #{rpmlin2,jdbcType=INTEGER},
+      </if>
+      <if test="rotorgo != null">
+        #{rotorgo,jdbcType=INTEGER},
+      </if>
+      <if test="bearnum != null">
+        #{bearnum,jdbcType=INTEGER},
+      </if>
+      <if test="tui != null">
+        #{tui,jdbcType=VARCHAR},
+      </if>
+      <if test="weiyi != null">
+        #{weiyi,jdbcType=VARCHAR},
+      </if>
+      <if test="yacha != null">
+        #{yacha,jdbcType=VARCHAR},
+      </if>
+      <if test="mw != null">
+        #{mw,jdbcType=INTEGER},
+      </if>
+      <if test="wtempstop != null">
+        #{wtempstop,jdbcType=INTEGER},
+      </if>
+      <if test="edhppressout != null">
+        #{edhppressout,jdbcType=INTEGER},
+      </if>
+      <if test="numvalve != null">
+        #{numvalve,jdbcType=INTEGER},
+      </if>
+      <if test="numhpvalve != null">
+        #{numhpvalve,jdbcType=INTEGER},
+      </if>
+      <if test="waterpowermax != null">
+        #{waterpowermax,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.entity.Jzpeizhi">
+    update jzpeizhi
+    <set>
+      <if test="jizuid != null">
+        jizuID = #{jizuid,jdbcType=INTEGER},
+      </if>
+      <if test="zhenhz != null">
+        ZhenHZ = #{zhenhz,jdbcType=INTEGER},
+      </if>
+      <if test="jianhz != null">
+        JianHZ = #{jianhz,jdbcType=INTEGER},
+      </if>
+      <if test="jiancf != null">
+        JianCF = #{jiancf,jdbcType=INTEGER},
+      </if>
+      <if test="rpmlin1 != null">
+        rpmlin1 = #{rpmlin1,jdbcType=INTEGER},
+      </if>
+      <if test="rpmlin2 != null">
+        rpmlin2 = #{rpmlin2,jdbcType=INTEGER},
+      </if>
+      <if test="rotorgo != null">
+        rotorgo = #{rotorgo,jdbcType=INTEGER},
+      </if>
+      <if test="bearnum != null">
+        bearnum = #{bearnum,jdbcType=INTEGER},
+      </if>
+      <if test="tui != null">
+        tui = #{tui,jdbcType=VARCHAR},
+      </if>
+      <if test="weiyi != null">
+        weiyi = #{weiyi,jdbcType=VARCHAR},
+      </if>
+      <if test="yacha != null">
+        yacha = #{yacha,jdbcType=VARCHAR},
+      </if>
+      <if test="mw != null">
+        MW = #{mw,jdbcType=INTEGER},
+      </if>
+      <if test="wtempstop != null">
+        Wtempstop = #{wtempstop,jdbcType=INTEGER},
+      </if>
+      <if test="edhppressout != null">
+        edHPpressout = #{edhppressout,jdbcType=INTEGER},
+      </if>
+      <if test="numvalve != null">
+        numvalve = #{numvalve,jdbcType=INTEGER},
+      </if>
+      <if test="numhpvalve != null">
+        numhpvalve = #{numhpvalve,jdbcType=INTEGER},
+      </if>
+      <if test="waterpowermax != null">
+        waterpowermax = #{waterpowermax,jdbcType=INTEGER},
+      </if>
+    </set>
+    where peizhiID = #{peizhiid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.entity.Jzpeizhi">
+    update jzpeizhi
+    set jizuID = #{jizuid,jdbcType=INTEGER},
+      ZhenHZ = #{zhenhz,jdbcType=INTEGER},
+      JianHZ = #{jianhz,jdbcType=INTEGER},
+      JianCF = #{jiancf,jdbcType=INTEGER},
+      rpmlin1 = #{rpmlin1,jdbcType=INTEGER},
+      rpmlin2 = #{rpmlin2,jdbcType=INTEGER},
+      rotorgo = #{rotorgo,jdbcType=INTEGER},
+      bearnum = #{bearnum,jdbcType=INTEGER},
+      tui = #{tui,jdbcType=VARCHAR},
+      weiyi = #{weiyi,jdbcType=VARCHAR},
+      yacha = #{yacha,jdbcType=VARCHAR},
+      MW = #{mw,jdbcType=INTEGER},
+      Wtempstop = #{wtempstop,jdbcType=INTEGER},
+      edHPpressout = #{edhppressout,jdbcType=INTEGER},
+      numvalve = #{numvalve,jdbcType=INTEGER},
+      numhpvalve = #{numhpvalve,jdbcType=INTEGER},
+      waterpowermax = #{waterpowermax,jdbcType=INTEGER}
+    where peizhiID = #{peizhiid,jdbcType=INTEGER}
+  </update>
+</mapper>

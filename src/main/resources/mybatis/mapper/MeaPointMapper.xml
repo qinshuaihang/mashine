@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xt.mapper.MeaPointMapper">
+  <resultMap id="BaseResultMap" type="com.xt.entity.MeaPoint">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="unit_num" jdbcType="INTEGER" property="unitNum" />
+    <result column="point_num" jdbcType="INTEGER" property="pointNum" />
+    <result column="point_name" jdbcType="VARCHAR" property="pointName" />
+    <result column="point_des" jdbcType="VARCHAR" property="pointDes" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, unit_num, point_num, point_name, point_des
+  </sql>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select * from mea_point
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from mea_point
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from mea_point
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.xt.entity.MeaPoint">
+    insert into mea_point (id, unit_num, point_num, 
+      point_name, point_des)
+    values (#{id,jdbcType=INTEGER}, #{unitNum,jdbcType=INTEGER}, #{pointNum,jdbcType=INTEGER}, 
+      #{pointName,jdbcType=VARCHAR}, #{pointDes,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.xt.entity.MeaPoint">
+    insert into mea_point
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="unitNum != null">
+        unit_num,
+      </if>
+      <if test="pointNum != null">
+        point_num,
+      </if>
+      <if test="pointName != null">
+        point_name,
+      </if>
+      <if test="pointDes != null">
+        point_des,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="unitNum != null">
+        #{unitNum,jdbcType=INTEGER},
+      </if>
+      <if test="pointNum != null">
+        #{pointNum,jdbcType=INTEGER},
+      </if>
+      <if test="pointName != null">
+        #{pointName,jdbcType=VARCHAR},
+      </if>
+      <if test="pointDes != null">
+        #{pointDes,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.xt.entity.MeaPoint">
+    update mea_point
+    <set>
+      <if test="unitNum != null">
+        unit_num = #{unitNum,jdbcType=INTEGER},
+      </if>
+      <if test="pointNum != null">
+        point_num = #{pointNum,jdbcType=INTEGER},
+      </if>
+      <if test="pointName != null">
+        point_name = #{pointName,jdbcType=VARCHAR},
+      </if>
+      <if test="pointDes != null">
+        point_des = #{pointDes,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.xt.entity.MeaPoint">
+    update mea_point
+    set unit_num = #{unitNum,jdbcType=INTEGER},
+      point_num = #{pointNum,jdbcType=INTEGER},
+      point_name = #{pointName,jdbcType=VARCHAR},
+      point_des = #{pointDes,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
