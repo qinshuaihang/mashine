@@ -1,9 +1,8 @@
 package com.xt.service;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,5 +21,7 @@ public interface MeapointService {
 	void update(MeaPoint meaPoint);
 
 	String readExcelFile(MultipartFile file);
+
+	List<MeaPoint> selectByIf(Map<String, Object> map);
 
 }

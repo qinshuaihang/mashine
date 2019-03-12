@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 /**
- * ��֤��
+ * @deprecated:TODO 验证码控制器类
  */
 @Controller
 public class ValidateCodeController {
@@ -60,8 +60,8 @@ public class ValidateCodeController {
 		for (int i = 0; i < LENGTH; ++i) {
 			result += code[rd.nextInt(code.length)];
 		}
-		HttpSession se = request.getSession();
-		se.setAttribute("code", result);
+		HttpSession session = request.getSession();
+		session.setAttribute("code", result.toString());
 
 		// ����֤��
 		for (int i = 0; i < result.length(); i++) {

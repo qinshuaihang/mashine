@@ -1,24 +1,20 @@
 package com.xt.serviceImpl;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.base.util.ReadExcel;
-import com.xt.entity.Jizu;
 import com.xt.entity.MeaPoint;
 import com.xt.mapper.MeaPointMapper;
 import com.xt.service.MeapointService;
 
 @Service(value="meaPointService")
+@Transactional
 public class meapointServiceImpl implements MeapointService{
 	@Autowired
 	private MeaPointMapper meaPointMapper;
@@ -85,5 +81,11 @@ public class meapointServiceImpl implements MeapointService{
         	System.out.println("打印excel中的数据"+m.toString());
         }
 		return insertMsg;
+	}
+
+	@Override
+	public List<MeaPoint> selectByIf(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return meaPointMapper.selectByIf(map);
 	}
 }

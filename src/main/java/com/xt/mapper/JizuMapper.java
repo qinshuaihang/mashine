@@ -1,6 +1,7 @@
 package com.xt.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -9,7 +10,7 @@ import com.xt.entity.Jizu;
 public interface JizuMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Jizu record);
+    int insert(Map<String, String> map);
 
     int insertSelective(Jizu record);
 

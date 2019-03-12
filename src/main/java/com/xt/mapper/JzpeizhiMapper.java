@@ -1,5 +1,7 @@
 package com.xt.mapper;
 
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.xt.entity.Jzpeizhi;
@@ -7,7 +9,7 @@ import com.xt.entity.Jzpeizhi;
 public interface JzpeizhiMapper {
     int deleteByPrimaryKey(Integer peizhiid);
 
-    int insert(Jzpeizhi record);
+    int insert(Map<String, String> map);
 
     int insertSelective(Jzpeizhi record);
 

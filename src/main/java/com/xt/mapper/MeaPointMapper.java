@@ -1,6 +1,7 @@
 package com.xt.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
@@ -17,6 +18,8 @@ public interface MeaPointMapper {
     MeaPoint selectByPrimaryKey(Integer id);
     
     List<MeaPoint> selectAll();
+    
+    List<MeaPoint> selectByIf(Map<String, Object> map);
 
     int updateByPrimaryKeySelective(MeaPoint record);
 

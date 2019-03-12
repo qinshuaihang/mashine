@@ -9,7 +9,7 @@ public class Jizu {
 
     private String jizuDes;
 
-    private Jzpeizhi jzpeizhi;
+    //private Jzpeizhi jzpeizhi;
     
     public Integer getId() {
         return id;
@@ -43,11 +43,11 @@ public class Jizu {
         this.jizuDes = jizuDes;
     }
     
-    public Jzpeizhi getJzpeizhi() {
-		return jzpeizhi;
-	}
-    
-    public void setJzpeizhi(Jzpeizhi jzpeizhi) {
-		this.jzpeizhi = jzpeizhi;
-	}
+//    public Jzpeizhi getJzpeizhi() {
+//		return jzpeizhi;
+//	}
+//    
+//    public void setJzpeizhi(Jzpeizhi jzpeizhi) {
+//		this.jzpeizhi = jzpeizhi;
+//	}
 }
